@@ -3,6 +3,17 @@ namespace Request;
 
 class IndexRequest extends Request {
     public $page = 1;
+    public $from;
+    public $to;
+    public $expense_id;
+    public $refinement;
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->from = date('Y-m-d', strtotime('-1 month'));
+        $this->to = date('Y-m-d', time());
+    }
 
     public function validate(): bool {
         return true;

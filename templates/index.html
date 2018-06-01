@@ -4,8 +4,40 @@
 <div id="control">
 </div>
 <div id="main">
+	<div id="refinement">
+		<form method="GET">
+			<table>
+				<tr><td>期間</td><td>
+					<input type="date" name="from" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+					&nbsp;〜&nbsp;
+					<input type="date" name="to" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+				</td></tr>
+				<tr><td>費目</td><td>
+					<select name="expense_id">
+						<?php foreach($this->data['expense'] as $item): ?>
+						<option value="<?php echo $item['id']; ?>" selected="selected"><?php echo $item['expense_name']; ?></option>
+						<?php endforeach; ?>
+					</select>
+				</td></tr>
+			</table>
+			<input type="submit" name="refinement" value="絞り込み">
+		</form>
+	</div>
+	<div id="total">
+		<?php if(isset($this->data['income']) && isset($this->data['spending'])): ?>
+		<div>収支: <span style="color: <?php echo ($this->data['income'] > $this->data['spending']) ? 'blue' : 'red'; ?>"><?php echo abs($this->data['income'] - $this->data['spending']); ?></span></div>
+		<?php endif; ?>
+
+		<?php if(isset($this->data['spending'])): ?>
+		<div>支出: <?php echo $this->data['spending']; ?></div>
+		<?php endif; ?>
+		<?php if(isset($this->data['income'])): ?>
+		<div>収入: <?php echo $this->data['income']; ?></div>
+		<?php endif; ?>
+	</div>
+
 	<?php if(isset($this->data['budgets']) && 0 < count($this->data['budgets'])): ?>
-	<div id="budgets">
+	<div id="recent">
 		<table>
 			<tr><th>収入/支出</th><th>費目</th><th>品目</th><th>金額</th><th>日付</th></tr>
 		<?php foreach($this->data['budgets'] as $item): ?>
@@ -41,7 +73,7 @@
 				<dt>品目</dt>
 				<dd><textarea name="item_name"></textarea></dd>
 			</dl>
-			<div><input type="submit" value="保存"/></div>
+			<div><input type="submit" value="登録"/></div>
 		</form>
 	</div>
 	<div id="monthly">
