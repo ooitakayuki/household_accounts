@@ -16,3 +16,18 @@ create table expense (
     expense_name varchar(256) not null, 
     primary key (id)
 );
+
+insert into expense (expense_name) values ('食費');
+insert into expense (expense_name) values ('水道光熱費');
+insert into expense (expense_name) values ('通信費');
+insert into expense (expense_name) values ('レジャー費');
+insert into expense (expense_name) values ('交通費');
+insert into expense (expense_name) values ('美容費');
+insert into expense (expense_name) values ('医療費');
+insert into expense (expense_name) values ('被服費');
+insert into expense (expense_name) values ('生活雑貨・日用品');
+insert into expense (expense_name) values ('住宅費');
+insert into expense (expense_name) values ('税金');
+insert into expense (expense_name) values ('保険');
+insert into expense (expense_name) values ('給与・賞与');
+insert into expense (expense_name) values ('その他');
