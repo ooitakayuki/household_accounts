@@ -1,0 +1,52 @@
+<nav>
+      <a href="/">Household accounts</a>
+</nav>
+<div id="control">
+</div>
+<div id="main">
+	<?php if(isset($this->data['budgets']) && 0 < count($this->data['budgets'])): ?>
+	<div id="budgets">
+		<table>
+			<tr><th>収入/支出</th><th>費目</th><th>品目</th><th>金額</th><th>日付</th></tr>
+		<?php foreach($this->data['budgets'] as $item): ?>
+			<tr>
+			<td><?php echo $item['type']; ?></td>
+			<td><?php echo $item['expense_name']; ?></td>
+			<td><?php echo $item['item_name']; ?></td>
+			<td><?php echo $item['amount']; ?></td>
+			<td><?php echo $item['created_at']; ?></td>
+			</tr>
+		<?php endforeach; ?>
+		</table>
+	</div>
+	<?php endif; ?>
+	<div id="add_spending">
+		<form method="POST" action="/add_budget.php">
+			<input type="hidden" name="created" value="2016-01-06 00:20:11" />
+			<dl><dt>金額</dt><dd><input type="text" name="amount" /></dd></dl>
+			<dl><dt>日付</dt><dd>12月26日<span><a href="">変更</a></span></dd></dl>
+			<dl><dt>分類</dt><dd>
+				<select name="type">
+					<option value="private" selected="selected">私費</option>
+					<option value="expense">経費</option>
+				</select>
+			</dd></dl>
+			<dl><dt>カテゴリ</dt><dd>
+				<select name="category">
+					<option value="食費" selected="selected">食費</option>
+					<option value="交通費<">交通費</option>
+					<option value="交際費">交際費</option>
+					<option value="趣味">趣味</option>
+				</select>
+			</dd></dl>
+			<dl>
+				<dt>メモ</dt>
+				<dd><textarea name="memo"></textarea></dd>
+			</dl>
+			<div><input type="submit" value="保存"/></div>
+		</form>
+	</div>
+	<div id="monthly">
+	</div>
+</div>
+
