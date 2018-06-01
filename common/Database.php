@@ -69,6 +69,7 @@ class Database
 			error_log($e->getMessage());
 			throw new DatabaseException('fail prepare.'.$sql);
 		}
+
 		if (!$sth->execute($values)) {
 			throw new DatabaseException('insert faild. sql:'.$sth->queryString);
 		}

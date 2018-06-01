@@ -10,12 +10,16 @@ class IndexRequest extends Request {
 
     function __construct()
     {
-        parent::__construct();
         $this->from = date('Y-m-d', strtotime('-1 month'));
         $this->to = date('Y-m-d', time());
+        parent::__construct();
     }
 
     public function validate(): bool {
+        if (isset($this->expense_id) && !is_numeric($this->expense_id)) {
+            $this->expense_id = null;
+        }
+
         return true;
     }
 

@@ -29,7 +29,7 @@ class Budgets {
      */
     public function find($offset, $limit, $sort = 'DESC') {
 		$sql = 'SELECT * FROM budgets as b LEFT JOIN expense as e ON e.id = b.expense_id';
-		$sql .= ' ORDER BY b.id '.$sort;
+		$sql .= ' ORDER BY b.created_at '.$sort;
         $sql .= ' LIMIT '.$offset.', '.$limit;
 		$data = [];
 		try {
@@ -72,7 +72,7 @@ class Budgets {
 
     public function find_with_distance($from, $to, $expense_id = null) {
         $sql = 'SELECT * FROM budgets as b LEFT JOIN expense as e ON e.id = b.expense_id';
-        $sql .= ' WHERE created_at BETWEEN :from AND :to';
+        $sql .= ' WHERE b.created_at BETWEEN :from AND :to';
         $bind = [
             'from' => $from,
             'to' => $to,
@@ -82,6 +82,8 @@ class Budgets {
             $sql .= ' AND expense_id = :expense_id';
             $bind['expense_id'] = $expense_id;
         }
+error_log(print_r($bind,true));
+        $sql .= ' ORDER BY b.created_at DESC';
 
         $data = [];
         try {

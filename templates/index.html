@@ -2,10 +2,35 @@
 	<h1><a href="/">Household accounts</a></h1>
 </header>
 <div id="control">
+	<div id="add_spending">
+		<form method="POST" action="/add.php">
+			<dl><dt>日付</dt><dd><input type="date" name="created_at" value="" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></dd></dl>
+			<dl><dt>金額</dt><dd><input type="text" name="amount" /></dd></dl>
+			<dl><dt>分類</dt><dd>
+				<select name="type">
+					<option value="spending" selected="selected">支出</option>
+					<option value="income">収入</option>
+				</select>
+			</dd></dl>
+			<dl><dt>費目</dt><dd>
+				<select name="expense_id">
+					<?php foreach($this->data['expense'] as $item): ?>
+					<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</dd></dl>
+			<dl>
+				<dt>品目</dt>
+				<dd><textarea name="item_name"></textarea></dd>
+			</dl>
+			<div><input type="submit" value="登録"/></div>
+		</form>
+	</div>
 </div>
 <div id="main">
 	<div id="refinement">
 		<form method="GET">
+			<input type="hidden" name="refinement" value="1">
 			<table>
 				<tr><td>期間</td><td>
 					<input type="date" name="from" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
@@ -14,15 +39,17 @@
 				</td></tr>
 				<tr><td>費目</td><td>
 					<select name="expense_id">
+						<option value="---" selected="selected">---</option>
 						<?php foreach($this->data['expense'] as $item): ?>
-						<option value="<?php echo $item['id']; ?>" selected="selected"><?php echo $item['expense_name']; ?></option>
+						<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
 						<?php endforeach; ?>
 					</select>
 				</td></tr>
 			</table>
-			<input type="submit" name="refinement" value="絞り込み">
+			<input type="submit" value="絞り込み">
 		</form>
 	</div>
+
 	<div id="total">
 		<?php if(isset($this->data['income']) && isset($this->data['spending'])): ?>
 		<div>収支: <span style="color: <?php echo ($this->data['income'] > $this->data['spending']) ? 'blue' : 'red'; ?>"><?php echo abs($this->data['income'] - $this->data['spending']); ?></span></div>
@@ -52,30 +79,7 @@
 		</table>
 	</div>
 	<?php endif; ?>
-	<div id="add_spending">
-		<form method="POST" action="/add.php">
-			<dl><dt>日付</dt><dd><input type="date" name="created_at" value="" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></dd></dl>
-			<dl><dt>金額</dt><dd><input type="text" name="amount" /></dd></dl>
-			<dl><dt>分類</dt><dd>
-				<select name="type">
-					<option value="spending" selected="selected">支出</option>
-					<option value="income">収入</option>
-				</select>
-			</dd></dl>
-			<dl><dt>費目</dt><dd>
-				<select name="expense_id">
-					<?php foreach($this->data['expense'] as $item): ?>
-					<option value="<?php echo $item['id']; ?>" selected="selected"><?php echo $item['expense_name']; ?></option>
-					<?php endforeach; ?>
-				</select>
-			</dd></dl>
-			<dl>
-				<dt>品目</dt>
-				<dd><textarea name="item_name"></textarea></dd>
-			</dl>
-			<div><input type="submit" value="登録"/></div>
-		</form>
-	</div>
+
 	<div id="monthly">
 	</div>
 </div>
