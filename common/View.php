@@ -1,4 +1,6 @@
 <?php
+namespace Common;
+
 define('LAYOUT_DIR', dirname(dirname(__FILE__)).'/templates/layout/');
 define('TEMPLATE_DIR', dirname(dirname(__FILE__)).'/templates/');
 
@@ -16,19 +18,19 @@ class View {
 		require_once LAYOUT_DIR.$layout.'html';
 	}
 
-	public function getLayout() {
+	public function get_layout() {
 		return $this->layout;
 	}
 
-	public function setLayout($value) {
+	public function set_layout($value) {
 		$this->layout = $value;
 	}
 
-	public function getData($key) {
+	public function get_data($key) {
 		return $this->data[$key];
 	}
 
-	public function setData($key, $value) {
+	public function set_data($key, $value) {
 		$this->data[$key] = $value;
 	}
 }

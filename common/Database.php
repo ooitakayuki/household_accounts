@@ -3,14 +3,24 @@ namespace Common;
 
 use Config\DbConfig;
 
-class DatabaseException extends Exception {
+class DatabaseException extends \Exception {
 }
 
 class Database
 {
+    /**
+     * @var Database
+     */
 	public static $instance = null;
+
+    /**
+     * @var \PDO
+     */
 	protected $_connection;
 
+    /**
+     * @return Database
+     */
 	public static function instance()
 	{
 		if (!isset(static::$instance))
@@ -29,14 +39,21 @@ class Database
 	}
 	public function connect()
 	{
-		$this->_connection = new PDO(DbConfig::PDO_DNS, DbConfig::DATABASE_USER, DbConfig::DATABASE_PASSWARD);
-		$this->_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$this->_connection = new \PDO(DbConfig::PDO_DNS, DbConfig::DATABASE_USER, DbConfig::DATABASE_PASSWARD);
+		$this->_connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 	}
 	public function disconnect()
 	{
 		$this->_connection = null;
 		return true;
 	}
+
+    /**
+     * @param $sql
+     * @param $values
+     * @return mixed
+     * @throws DatabaseException
+     */
 	public function execute($sql, $values)
 	{
 		$this->_connection or $this->connect();
@@ -48,7 +65,7 @@ class Database
 		
 		try {
 			$sth = $this->_connection->prepare($sql);
-		} catch (PDOException $e) {
+		} catch (\PDOException $e) {
 			error_log($e->getMessage());
 			throw new DatabaseException('fail prepare.'.$sql);
 		}

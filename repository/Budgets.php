@@ -2,10 +2,18 @@
 namespace Repository;
 
 use Common\Database;
+use Common\DatabaseException;
 
 class Budgets {
+    /**
+     * @var Database
+     */
     private $db;
 
+    /**
+     * Budgets constructor.
+     * @param \Common\Database $db
+     */
     function __construct($db = null) {
         $this->db = $db;
         if ($this->db === null) {
@@ -14,12 +22,12 @@ class Budgets {
     }
 
     public function find($offset, $limit, $sort = 'DESC') {
-		$sql = 'SELECT * FROM budgets';
-		$sql .= ' ORDER BY id '.$sort;
-        $sql .= ' LIMIT '.$offset.' '.$limit;
-		$data = array();
+		$sql = 'SELECT * FROM budgets as b LEFT JOIN expense as e ON e.id = b.expense_id';
+		$sql .= ' ORDER BY b.id '.$sort;
+        $sql .= ' LIMIT '.$offset.', '.$limit;
+		$data = [];
 		try {
-			$data = $this->db->execute($sql, $values);
+			$data = $this->db->execute($sql, []);
 		} catch (DatabaseException $e) {
 			error_log($e);
 		}
@@ -28,7 +36,7 @@ class Budgets {
 
     public function add($values) {
 		$keys = array_keys($values);
-		$sql = 'INSERT INTO '.$table.' ('.implode(', ', $keys).') VALUES (:'.implode(', :', $keys).')';
+		$sql = 'INSERT INTO budgets'.' ('.implode(', ', $keys).') VALUES (:'.implode(', :', $keys).')';
 		$id = '';
 		$this->db->start_transaction();
 		try {

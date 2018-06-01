@@ -5,7 +5,10 @@ create table budgets (
     expense_id int(10) not null,
     amount bigint not null,
     created_at timestamp not null default current_timestamp,
-    primary key (id)
+    primary key (id),
+    key idx_type (type),
+    key idx_expense (expense_id),
+    key idx_type_expense (type, expense_id)
 );
 
 create table expense (

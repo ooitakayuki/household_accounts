@@ -4,7 +4,7 @@
             "Common\\" : "common/",
             "Config\\" : "config/",
             "Controller\\" : "controller/",
-            "Reuqest\\" : "request/",
+            "Request\\" : "request/",
             "Repository\\" : "repository/"
         }
     }

@@ -6,8 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Models\\' => array($baseDir . '/models'),
-    'Controllers\\' => array($baseDir . '/controllers'),
+    'Request\\' => array($baseDir . '/request'),
+    'Repository\\' => array($baseDir . '/repository'),
+    'Controller\\' => array($baseDir . '/controller'),
     'Config\\' => array($baseDir . '/config'),
     'Common\\' => array($baseDir . '/common'),
 );
