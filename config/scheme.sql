@@ -13,7 +13,7 @@ create table budgets (
 
 create table expense (
     id bigint unsigned not null auto_increment,
-    expense_name varchar(256) not null, 
+    expense_name varchar(256) not null,
     primary key (id)
 );
 

@@ -1,0 +1,18 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    margin: 0;
+    padding: 0;
+    background-color: #112;
+}
+.header__title {
+    display: inline-block;
+    color: #fff;
+    font-size: x-large;
+    padding: 10px 20px;
+    text-decoration: none;
+}

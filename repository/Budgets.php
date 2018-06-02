@@ -82,7 +82,7 @@ class Budgets {
             $sql .= ' AND expense_id = :expense_id';
             $bind['expense_id'] = $expense_id;
         }
-error_log(print_r($bind,true));
+
         $sql .= ' ORDER BY b.created_at DESC';
 
         $data = [];
