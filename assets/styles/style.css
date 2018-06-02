@@ -17,8 +17,27 @@ body {
     text-decoration: none;
 }
 
+.control__add-button {
+    display: block;
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: fuchsia;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: center;
+    line-height: 55px;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: #fff;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
 .control__add-spending {
     position: absolute;
+    width: 100%;
     height: 0;
     max-height: 200px;
     overflow: hidden;
