@@ -1,54 +1,53 @@
 <header class="header">
 	<div><a class="header__title" href="/">Household accounts</a></div>
 </header>
-<div class="control">
-	<div class="control__add_spending">
-		<form method="POST" action="/add.php">
-			<table>
-				<tr><td>日付</td><td><input type="date" name="created_at" value="" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></td></tr>
-				<tr><td>金額</td><td><input type="text" name="amount" /></td></tr>
-				<tr><td>分類</td><td>
-					<select name="type">
-						<option value="spending" selected="selected">支出</option>
-						<option value="income">収入</option>
-					</select>
-				</td></tr>
-				<tr><td>費目</td><td>
-					<select name="expense_id">
-						<?php foreach($this->data['expense'] as $item): ?>
-						<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
-						<?php endforeach; ?>
-					</select>
-				</td></tr>
-				<tr>
-					<td>品目</td>
-					<td><textarea name="item_name"></textarea></td>
-				</tr>
-			</table>
-			<div><input type="submit" value="登録"/></div>
-		</form>
-	</div>
-	<div class="control__refinement">
-		<form method="GET">
-			<input type="hidden" name="refinement" value="1">
-			<table>
-				<tr><td>期間</td><td>
-					<input type="date" name="from" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
-					&nbsp;〜&nbsp;
-					<input type="date" name="to" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
-				</td></tr>
-				<tr><td>費目</td><td>
-					<select name="expense_id">
-						<option value="---" selected="selected">---</option>
-						<?php foreach($this->data['expense'] as $item): ?>
-						<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
-						<?php endforeach; ?>
-					</select>
-				</td></tr>
-			</table>
-			<input type="submit" value="絞り込み">
-		</form>
-	</div>
+<div><a href="#" class="control__add-button">追加</a></div>
+<div class="control__add-spending">
+	<form method="POST" action="/add.php">
+		<table>
+			<tr><td>日付</td><td><input type="date" name="created_at" value="" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></td></tr>
+			<tr><td>金額</td><td><input type="text" name="amount" /></td></tr>
+			<tr><td>分類</td><td>
+				<select name="type">
+					<option value="spending" selected="selected">支出</option>
+					<option value="income">収入</option>
+				</select>
+			</td></tr>
+			<tr><td>費目</td><td>
+				<select name="expense_id">
+					<?php foreach($this->data['expense'] as $item): ?>
+					<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td></tr>
+			<tr>
+				<td>品目</td>
+				<td><textarea name="item_name"></textarea></td>
+			</tr>
+		</table>
+		<div><input type="submit" value="登録"/></div>
+	</form>
+</div>
+<div class="control__refinement">
+	<form method="GET">
+		<input type="hidden" name="refinement" value="1">
+		<table>
+			<tr><td>期間</td><td>
+				<input type="date" name="from" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+				&nbsp;〜&nbsp;
+				<input type="date" name="to" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+			</td></tr>
+			<tr><td>費目</td><td>
+				<select name="expense_id">
+					<option value="---" selected="selected">---</option>
+					<?php foreach($this->data['expense'] as $item): ?>
+					<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td></tr>
+		</table>
+		<input type="submit" value="絞り込み">
+	</form>
 </div>
 <div class="main">
 	<div class="main__total">
