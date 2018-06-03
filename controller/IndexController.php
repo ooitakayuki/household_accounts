@@ -2,8 +2,8 @@
 namespace Controller;
 
 use Common\View;
-use Repository\Budgets;
-use Repository\Expense;
+use Repository\BudgetsRepository;
+use Repository\ExpenseRepository;
 use Request\IndexRequest;
 
 class IndexController {
@@ -15,7 +15,7 @@ class IndexController {
             // TODO goto error page
         }
 
-        $budgets_model = new Budgets();
+        $budgets_model = new BudgetsRepository();
         $spending = $budgets_model->sum_with_distance('spending', $request->from, $request->to, $request->expense_id);
         $income = $budgets_model->sum_with_distance('income', $request->from, $request->to, $request->expense_id);
 
@@ -26,7 +26,7 @@ class IndexController {
             $budgets_list = $budgets_model->find($offset, static::DEFAULT_LIMIT);
         }
 
-        $expense_model = new Expense();
+        $expense_model = new ExpenseRepository();
         $expense = $expense_model->findAll();
 
         $view = new View();

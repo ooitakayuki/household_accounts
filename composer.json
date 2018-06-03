@@ -5,7 +5,8 @@
             "Config\\" : "config/",
             "Controller\\" : "controller/",
             "Request\\" : "request/",
-            "Repository\\" : "repository/"
+            "Repository\\" : "repository/",
+            "Dto\\" : "dto/"
         }
     },
     "require-dev": {

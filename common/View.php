@@ -1,5 +1,6 @@
 <?php
 namespace Common;
+require_once __DIR__ . "/../vendor/autoload.php";
 
 define('LAYOUT_DIR', dirname(dirname(__FILE__)).'/templates/layout/');
 define('TEMPLATE_DIR', dirname(dirname(__FILE__)).'/templates/');
@@ -12,10 +13,10 @@ class View {
 	public function render($value, $layout = null) {
 		$this->template = $value;
 		if ($layout == null) {
-			require_once LAYOUT_DIR.$this->layout.'.html';
+			require_once LAYOUT_DIR.$this->layout.'.php';
 			exit;
 		}
-		require_once LAYOUT_DIR.$layout.'html';
+		require_once LAYOUT_DIR.$layout.'php';
 	}
 
 	public function get_layout() {

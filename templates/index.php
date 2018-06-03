@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var $budgets \Dto\Budgets[]
+ * @var $expense \Dto\Expense[]
+ */
+$budgets = $this->data['budgets'];
+$expense = $this->data['expense'];
+?>
 <header class="header">
 	<div><a class="header__title" href="/">Household accounts</a></div>
 </header>
@@ -6,7 +14,7 @@
 	<div class="control__add-spending">
 		<form method="POST" action="/add.php">
 			<table>
-				<tr><td>日付</td><td><input type="date" name="created_at" value="" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></td></tr>
+				<tr><td>日付</td><td><input type="date" name="created_at" required opattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" /></td></tr>
 				<tr><td>金額</td><td><input type="text" name="amount" /></td></tr>
 				<tr><td>分類</td><td>
 					<select name="type">
@@ -16,8 +24,8 @@
 				</td></tr>
 				<tr><td>費目</td><td>
 					<select name="expense_id">
-						<?php foreach($this->data['expense'] as $item): ?>
-						<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
+						<?php foreach($expense as $item): ?>
+						<option value="<?php echo $item->id; ?>"><?php echo $item->expense_name; ?></option>
 						<?php endforeach; ?>
 					</select>
 				</td></tr>
@@ -42,8 +50,8 @@
 			<tr><td>費目</td><td>
 				<select name="expense_id">
 					<option value="---" selected="selected">---</option>
-					<?php foreach($this->data['expense'] as $item): ?>
-					<option value="<?php echo $item['id']; ?>"><?php echo $item['expense_name']; ?></option>
+					<?php foreach($expense as $item): ?>
+					<option value="<?php echo $item->id; ?>"><?php echo $item->expense_name; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</td></tr>
@@ -65,17 +73,17 @@
 		<?php endif; ?>
 	</div>
 
-	<?php if(isset($this->data['budgets']) && 0 < count($this->data['budgets'])): ?>
+	<?php if(isset($budgets) && 0 < count($budgets)): ?>
 	<div class="main__recent">
 		<table>
 			<tr><th>収入/支出</th><th>費目</th><th>品目</th><th>金額</th><th>日付</th></tr>
-		<?php foreach($this->data['budgets'] as $item): ?>
+		<?php foreach($budgets as $item): ?>
 			<tr>
-			<td><?php echo $item['type'] == 'spending' ? '支出' : '収入'; ?></td>
-			<td><?php echo $item['expense_name']; ?></td>
-			<td><?php echo $item['item_name']; ?></td>
-			<td><?php echo $item['amount']; ?></td>
-			<td><?php echo $item['created_at']; ?></td>
+			<td><?php echo $item->type == 'spending' ? '支出' : '収入'; ?></td>
+			<td><?php echo $item->expense_name; ?></td>
+			<td><?php echo $item->item_name; ?></td>
+			<td><?php echo $item->amount; ?></td>
+			<td><?php echo $item->created_at; ?></td>
 			</tr>
 		<?php endforeach; ?>
 		</table>

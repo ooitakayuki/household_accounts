@@ -3,8 +3,9 @@ namespace Repository;
 
 use Common\Database;
 use Common\DatabaseException;
+use Dto\Expense;
 
-class Expense
+class ExpenseRepository
 {
     /**
      * @var Database
@@ -12,7 +13,7 @@ class Expense
     private $db;
 
     /**
-     * Budgets constructor.
+     * BudgetsRepository constructor.
      * @param \Common\Database $db
      */
     function __construct($db = null) {
@@ -22,15 +23,24 @@ class Expense
         }
     }
 
-    public function findAll() {
+    /**
+     * @return Expense[]
+     */
+    public function findAll(): array {
         $sql = 'SELECT * FROM expense';
         $sql .= ' ORDER BY id ASC';
-        $data = [];
+        $result = [];
         try {
-            $data = $this->db->execute($sql, []);
+            $result = $this->db->execute($sql, []);
         } catch (DatabaseException $e) {
             error_log($e);
         }
+
+        $data = [];
+        foreach ($result as $item) {
+            $data[] = Expense::wrap($item);
+        }
+
         return $data;
     }
 }

@@ -26,6 +26,7 @@ class ComposerStaticInit5ddb182847d87c958e428ec6e9a1501f
         ),
         'D' => 
         array (
+            'Dto\\' => 4,
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
         ),
@@ -55,6 +56,10 @@ class ComposerStaticInit5ddb182847d87c958e428ec6e9a1501f
         'Repository\\' => 
         array (
             0 => __DIR__ . '/../..' . '/repository',
+        ),
+        'Dto\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/dto',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

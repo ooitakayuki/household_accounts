@@ -10,6 +10,7 @@ return array(
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Request\\' => array($baseDir . '/request'),
     'Repository\\' => array($baseDir . '/repository'),
+    'Dto\\' => array($baseDir . '/dto'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Controller\\' => array($baseDir . '/controller'),

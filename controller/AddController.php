@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use Repository\Budgets;
+use Repository\BudgetsRepository;
 use Request\AddRequest;
 
 class AddController
@@ -13,7 +13,7 @@ class AddController
             // TODO goto error page
         }
 
-        $model = new Budgets();
+        $model = new BudgetsRepository();
         $result = $model->add($request->values());
 
         header('location: /index.php');

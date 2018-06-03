@@ -11,7 +11,7 @@
 
 </head>
 <body>
-	<?php require_once TEMPLATE_DIR . $this->template . '.html'; ?>
+	<?php require_once TEMPLATE_DIR . $this->template . '.php'; ?>
 </body>
 </html>
 <script type="text/javascript" src="/assets/scripts/index.js"></script>
