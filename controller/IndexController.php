@@ -6,10 +6,10 @@ use Repository\BudgetsRepository;
 use Repository\ExpenseRepository;
 use Request\IndexRequest;
 
-class IndexController {
+class IndexController implements Controller {
     const DEFAULT_LIMIT = 30;
 
-    public function run() {
+    public function run(): void {
         $request = new IndexRequest();
         if($request->validate()) {
             // TODO goto error page
@@ -27,7 +27,7 @@ class IndexController {
         }
 
         $expense_model = new ExpenseRepository();
-        $expense = $expense_model->findAll();
+        $expense = $expense_model->find_all();
 
         $view = new View();
         $view->set_data('budgets', $budgets_list);

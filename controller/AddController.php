@@ -5,9 +5,9 @@ namespace Controller;
 use Repository\BudgetsRepository;
 use Request\AddRequest;
 
-class AddController
+class AddController implements Controller
 {
-    public function run() {
+    public function run(): void {
         $request = new AddRequest();
         if($request->validate()) {
             // TODO goto error page

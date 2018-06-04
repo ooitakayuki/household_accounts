@@ -26,7 +26,7 @@ class ExpenseRepository
     /**
      * @return Expense[]
      */
-    public function findAll(): array {
+    public function find_all(): array {
         $sql = 'SELECT * FROM expense';
         $sql .= ' ORDER BY id ASC';
         $result = [];
